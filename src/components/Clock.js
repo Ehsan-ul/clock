@@ -28,7 +28,6 @@ class Clock extends Component {
   };
 
   render() {
-    console.log('clock component rendered');
     const { date, local } = this.state;
 
     return (
@@ -36,7 +35,17 @@ class Clock extends Component {
         <h1>
           <span>{date.toLocaleTimeString(local)}</span>
         </h1>
-        <Button change={this.handleClick} local='en-US'></Button>
+
+        {local === 'bn-BD' ? (
+          <Button
+            change={this.handleClick}
+            local='en-US'
+            show={false}
+            enable
+          ></Button>
+        ) : (
+          <Button change={this.handleClick} local='bn-BD' show enable={false} />
+        )}
       </div>
     );
   }

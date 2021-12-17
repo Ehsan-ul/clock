@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Button extends Component {
   shouldComponentUpdate(nextProps) {
     const { change: currentChange, local: currentLocal } = this.props;
-    const { change: nextChange, local : nextLocal } = nextProps;
+    const { change: nextChange, local: nextLocal } = nextProps;
 
     if (currentChange === nextChange && currentLocal === nextLocal) {
       return false;
@@ -13,15 +13,18 @@ class Button extends Component {
   }
 
   render() {
-    console.log('button component rendered');
-    const { change, local } = this.props;
+    const { change, local, show, enable } = this.props;
+    // if (!enable) return null;  // ei return kaj korle nicer return ta kaj korbe na r
 
     return (
-      <div>
+      <>
         <button type='button' onClick={() => change(local)}>
-          Click here
+          {local === 'bn-BD'
+            ? 'Change Clock to Bengali'
+            : 'ঘড়িটি ইংরেজিতে দেখুন'}
         </button>
-      </div>
+        {show && <p>This is a text.</p>}
+      </>
     );
   }
 }
